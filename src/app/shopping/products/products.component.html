@@ -1,0 +1,24 @@
+<div class="row mx-0 py-2">
+  <div class="col-2">
+    <div class="list-group" id="list-tab" role="tablist">
+      <button type="button" *ngFor="let category of categoriesList" 
+        class="list-group-item list-group-item-action" (click)="getProductsOfCategory(category)">
+        {{category}}
+      </button>
+    </div>
+  </div>
+  <div class="col" *ngIf="productsList.length > 0">
+    <div class="row" *ngIf="productsList.length > 0">
+      <div class="card-deck col-6 col-md-3 mb-3" *ngFor="let product of productsList">
+        <app-product-card [productData]="product" [wishlistBtnRequired]="true" 
+          (manageProductForWishlist)="manageProductForWishlist($event)" 
+          (addToCartEvent)="addProductToCart($event)">
+        </app-product-card>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showSpinner">
+    <app-spinner></app-spinner>
+  </div>
+</div>

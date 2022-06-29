@@ -1,1 +1,181 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  width: 100%;
+  min-height: 100vh;
+}
+body {
+  margin: 0px !important;
+}
+
+@keyframes heartbeat {
+  0% {transform: scale(.2);}
+  100% {transform: scale(1);}
+}
+
+//Extend/Inheritance
+%truncate-ellipsis {
+  max-width: 95%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.header {
+  .min-header {
+    width: 100%;
+    min-height: 20px;
+    padding-top: 5px;
+    max-height: max-content;
+    background-color: #eee;
+    justify-content: space-between;
+    .pull-left, .pull-right {
+      max-width: fit-content;
+      a {
+        text-decoration: none;
+        color: #000000;
+        margin: 0px 5px;
+        font-size: 12px;
+        vertical-align: top;
+        .list-icon {
+          font-size: 14px;
+          margin-right: 2px;
+        }
+      }
+    }
+  }
+  .main-header {
+    width: 100%;
+    min-height: 60px;
+    max-height: max-content;
+    border-bottom: 1px solid #000000;
+    justify-content: space-between;
+    .pull-left, .pull-right {
+      max-width: fit-content;
+      display: flex;
+      align-items: center;
+      a {
+        text-decoration: none;
+        color: #000000;
+        margin: 0px 15px;
+        vertical-align: middle;
+        font-size: 14px;
+        letter-spacing: 1px;
+        &.brand-logo {
+          margin: 0px 20px;
+        }
+        h4 {
+          font-size: 18px;
+          margin-bottom: 0px;
+          display: inline-block;
+        }
+      }
+    }
+
+    .pull-left {
+      text-transform: uppercase;
+    }
+    .pull-right {
+      a {
+        font-size: 18px;
+        &.icon {
+          margin: 0px 8px;
+        }
+      }
+    }
+
+  }
+}
+
+.card {
+  &.product-card {
+    width: 300px;
+    padding-top: 15px;
+    position: relative;
+    border-radius: 10px;
+    .float-icon {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      width: 25px;
+      height: 25px;
+      border-radius: 100px;
+      border: 1px solid;
+      text-align: center;
+      cursor: pointer;
+
+      .inner-grid {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        i {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 12px;
+          text-align: center; 
+        }
+      }
+
+      &.wishlist-btn {
+        background-color: black;
+        color: white;
+        // &:active {
+        //   animation: heartbeat 3s ease-out;
+        // }
+        &.active {
+          background-color: red;
+        }
+      }
+      &.remove-btn {
+        color: lighten(#000000, 50%);
+        border-color: ligthen(#000000, 60%);
+      }
+  
+    }
+  
+    img{
+      &.product-img-lg {
+        min-height: 280px;
+        max-height: 280px;
+        max-width: 240px;
+      }
+    }
+    .card-body {
+      .title {
+        @extend %truncate-ellipsis;
+        font-size: 18px;
+        margin-bottom: 0px;
+      }
+      .description {
+        @extend %truncate-ellipsis;
+        color: lighten(#000000, 70%);
+        font-size: 13px;
+      }
+      .price {
+        font-size: 20px;
+      }
+      .additional-text {
+        font-size: 13px;
+      }
+      
+    }
+    .main-btn {
+      width: 100%;
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+      min-height: 35px;
+      &:focus {
+        border: none !important;
+        outline: 0px;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<div class="row mx-0">
+  <div class="col-12">
+    <div class="card product-card">
+      <button class="float-icon wishlist-btn" [ngClass]="productData['isWishlisted'] ? 'active': '' "
+        (click)="floatIconBtnClicked('wishlist', productData)" *ngIf="wishlistBtnRequired">
+        <div class="inner-grid">
+          <i class="fa fa-heart"></i>
+        </div>
+      </button>
+      <button class="float-icon remove-btn" *ngIf="removeBtnRequired"
+        (click)="floatIconBtnClicked('remove', productData)" >
+        <div class="inner-grid">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+      </button>
+      <div class="row mx-0 justify-content-center">
+        <img [src]="productData.image" alt="Product image" class="product-img-lg">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title title">{{productData.title}}</h5>
+        <h6 class="card-subtitle description">{{productData.description}}</h6>
+        <h4 class="price">{{productData.price | currency}} </h4>
+        <div class="additional-text">
+          <p>Price inclusive of all taxes</p>
+        </div>
+      </div>
+      <div class="card-button-container">
+        <button class="btn-dark main-btn" (click)="addToCart(productData)">Add to cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
