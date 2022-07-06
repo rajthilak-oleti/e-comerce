@@ -10,7 +10,7 @@
   <div class="col" *ngIf="productsList.length > 0">
     <div class="row" *ngIf="productsList.length > 0">
       <div class="card-deck col-6 col-md-3 mb-3" *ngFor="let product of productsList">
-        <app-product-card [productData]="product" [wishlistBtnRequired]="true" 
+        <app-product-card [productData]="product" [wishlistBtnRequired]="true" [mainBtnText]="'Add to cart'" 
           (manageProductForWishlist)="manageProductForWishlist($event)" 
           (addToCartEvent)="addProductToCart($event)">
         </app-product-card>

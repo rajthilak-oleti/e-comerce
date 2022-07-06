@@ -9,6 +9,7 @@ export class ProductCardComponent implements OnInit {
   @Input() productData!: any;
   @Input() wishlistBtnRequired: boolean = false;
   @Input() removeBtnRequired: boolean = false;
+  @Input() mainBtnText!: string;
   @Output() manageProductForWishlist: EventEmitter<any> = new EventEmitter();
   @Output() removeProductFromWishlist: EventEmitter<any> = new EventEmitter();
   @Output() addToCartEvent: EventEmitter<any> = new EventEmitter();

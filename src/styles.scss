@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url('https://fonts.googleapis.com/css2?family=Yesteryear&display=swap');
+
 * {
   padding: 0;
   margin: 0;
@@ -69,6 +71,7 @@ body {
         letter-spacing: 1px;
         &.brand-logo {
           margin: 0px 20px;
+          font-family: 'Yesteryear', cursive;
         }
         h4 {
           font-size: 18px;

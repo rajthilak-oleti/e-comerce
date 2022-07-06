@@ -10,7 +10,7 @@ export class ProductsComponent implements OnInit {
   categoriesList: any[] = [];
   productsList: any[] = [];
   showSpinner: boolean = false;
-  constructor(private productService: ProductService, ) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -87,7 +87,7 @@ export class ProductsComponent implements OnInit {
           wishlistArray.splice(targetIndex, 1);
           localStorage.setItem('wishlist', JSON.stringify(wishlistArray));
         }
-      }
+      } 
     } else {
       if(addToWishlist) {
         wishlistArray.push(data);
@@ -99,12 +99,8 @@ export class ProductsComponent implements OnInit {
   addProductToCart(selectedProduct: any) {
     let cart = localStorage.getItem('itemsInCart');
     let itemsInCart: any = cart ? JSON.parse(cart) : [];
-    if(itemsInCart && itemsInCart.length > 0) {
-      itemsInCart.push(selectedProduct); 
-    } else {
-      
-    }
-    localStorage.setItem('wishlist', JSON.stringify(itemsInCart));
+    itemsInCart.push(selectedProduct);
+    localStorage.setItem('itemsInCart', JSON.stringify(itemsInCart));
   }
 
 }
