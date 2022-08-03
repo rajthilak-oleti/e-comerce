@@ -2,11 +2,12 @@ import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ProductService } from '../services/product.service';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  selector: 'app-product-overview',
+  templateUrl: './product-overview.component.html',
+  styleUrls: ['./product-overview.component.scss']
 })
-export class CartComponent implements OnInit {
+export class ProductOverviewComponent implements OnInit {
+
   selectedProduct: any;
   productData: any;
   showSpinner: boolean = false;

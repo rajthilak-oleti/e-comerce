@@ -1,5 +1,5 @@
 <div class="row mx-0">
-  <div class="col-12">
+  <!-- <div class="col-12"> -->
     <div class="card product-card">
       <button class="float-icon wishlist-btn" [ngClass]="productData['isWishlisted'] ? 'active': '' "
         (click)="floatIconBtnClicked('wishlist', productData)" *ngIf="wishlistBtnRequired">
@@ -24,10 +24,10 @@
           <p>Price inclusive of all taxes</p>
         </div>
       </div>
-      <div class="card-button-container">
-        <button class="btn-dark main-btn" (click)="addToCart(productData)">{{mainBtnText}}</button>
-      </div>
+      <!-- <div class="card-button-container">
+        <button class="btn-dark main-btn" (click)="mainBtnClicked(productData)">{{mainBtnLabel}}</button>
+      </div> -->
     </div>
-  </div>
+  <!-- </div> -->
 </div>
 

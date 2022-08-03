@@ -9,10 +9,11 @@ export class ProductCardComponent implements OnInit {
   @Input() productData!: any;
   @Input() wishlistBtnRequired: boolean = false;
   @Input() removeBtnRequired: boolean = false;
-  @Input() mainBtnText!: string;
+  @Input() mainBtnLabel!: any;
   @Output() manageProductForWishlist: EventEmitter<any> = new EventEmitter();
   @Output() removeProductFromWishlist: EventEmitter<any> = new EventEmitter();
   @Output() addToCartEvent: EventEmitter<any> = new EventEmitter();
+  @Output() mainBtnClickEvent: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -60,8 +61,9 @@ export class ProductCardComponent implements OnInit {
       this.removeProductFromWishlist.emit(selectedProduct)
   }
 
-  addToCart(productData: any) {
-    this.addToCartEvent.emit(productData);
+  mainBtnClicked(productData: any) {
+    const btnObj = {'label': this.mainBtnLabel, 'selectedData': productData}
+    this.mainBtnClickEvent.emit(btnObj);
   }
 
 }

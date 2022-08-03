@@ -5,8 +5,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProductService {
-  categoriesUrl: string = 'https://fakestoreapi.com/products/categories';
-  productsUrl: string = 'https://fakestoreapi.com/products/category'
+  baseUrl: string = 'https://fakestoreapi.com/products/'
+  categoriesUrl: string = `${this.baseUrl}categories`;
+  productsUrl: string = `${this.baseUrl}category`;
   constructor(private http: HttpClient) { }
 
   getCategories() {
@@ -15,6 +16,10 @@ export class ProductService {
 
   getProductsOfCategory(selectedCategory: string) {
     return this.http.get(this.productsUrl + '/' + selectedCategory)
+  }
+
+  getProductDetailsById(selectedProductId: string) {
+    return this.http.get(this.baseUrl + '/' + selectedProductId);
   }
   
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class ProductsComponent implements OnInit {
   categoriesList: any[] = [];
   productsList: any[] = [];
   showSpinner: boolean = false;
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -101,6 +102,14 @@ export class ProductsComponent implements OnInit {
     let itemsInCart: any = cart ? JSON.parse(cart) : [];
     itemsInCart.push(selectedProduct);
     localStorage.setItem('itemsInCart', JSON.stringify(itemsInCart));
+  }
+
+  mainBtnClickEvent({label, selectedData}: any){
+    if(label == 'Buy Now') {
+      this.router.navigate([`/overview`]);
+    } else if(label == 'addToCart') {
+      this.addProductToCart(selectedData);
+    }
   }
 
 }
