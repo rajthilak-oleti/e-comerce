@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -11,10 +11,29 @@ export class ProductsComponent implements OnInit {
   categoriesList: any[] = [];
   productsList: any[] = [];
   showSpinner: boolean = false;
-  constructor(private productService: ProductService, private router: Router) { }
+  productDetailsFromParams = {
+    category: '',
+    id: '',
+  };
+  constructor(private productService: ProductService, private router: Router, 
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getCategories();
+    
+    this.activatedRoute.params
+      .subscribe((params: Params) => {
+        if(params) {
+          if(params.category && !params.id) {
+            this.productDetailsFromParams['category'] = params.category;
+            this.getProductsOfCategory(params.category);
+          }
+          if(params.category && params.id) {
+            this.productDetailsFromParams['category'] = params.category;
+            this.productDetailsFromParams['id'] = params.id;
+          }
+        }
+      });
   }
 
   getCategories() {
@@ -110,6 +129,10 @@ export class ProductsComponent implements OnInit {
     } else if(label == 'addToCart') {
       this.addProductToCart(selectedData);
     }
+  }
+
+  openProductOverview(SelectedProduct: any) {
+    this.router.navigate([SelectedProduct['id']], {relativeTo: this.activatedRoute});
   }
 
 }

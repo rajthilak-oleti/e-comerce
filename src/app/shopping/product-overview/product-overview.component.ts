@@ -1,4 +1,5 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -8,27 +9,36 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductOverviewComponent implements OnInit {
 
-  selectedProduct: any;
   productData: any;
   showSpinner: boolean = false;
-  constructor(private productService: ProductService) { }
-
-  ngOnChanges(changes: SimpleChanges) {
-    for (const propName of Object.keys(changes)) {
-      let change = changes[propName];
-      if (propName === 'productData') {
-        if (change.currentValue !== change.previousValue) {
-          if(this.selectedProduct) {
-            console.log(this.selectedProduct);
-            this.getSelectedProductData();
-          }
-
-        }
-      }
-    }
+  selectedProduct: any = {
+    category: '',
+    id: ''
   }
+  constructor(private productService: ProductService, private route: ActivatedRoute) { }
+
+  // ngOnChanges(changes: SimpleChanges) {
+  //   for (const propName of Object.keys(changes)) {
+  //     let change = changes[propName];
+  //     if (propName === 'productData') {
+  //       if (change.currentValue !== change.previousValue) {
+  //         if(this.selectedProduct) {
+  //           console.log(this.selectedProduct);
+  //           this.getSelectedProductData();
+  //         }
+
+  //       }
+  //     }
+  //   }
+  // }
 
   ngOnInit(): void {
+    const params = this.route.snapshot.params;
+    if(params && params.category && params.id) {
+      this.selectedProduct.category = params.category;
+      this.selectedProduct.id = params.id;
+      this.getSelectedProductData();
+    }
   }
 
   getSelectedProductData() {
@@ -37,6 +47,7 @@ export class ProductOverviewComponent implements OnInit {
     .subscribe((res: any) => {
       if(res) {
         this.productData = res;
+        console.log('productData -> ', this.productData);
       } else {
         this.productData = null;
       }

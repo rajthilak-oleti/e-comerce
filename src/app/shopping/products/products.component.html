@@ -1,8 +1,8 @@
 <div class="row mx-0 py-2">
   <div class="col-4 col-md-2">
     <div class="list-group vertical-navbar" id="list-tab" role="tablist">
-      <a *ngFor="let category of categoriesList" routerLinkActive="active"
-        class="verical-nav-item list-group-item list-group-item-action" (click)="getProductsOfCategory(category)">
+      <a *ngFor="let category of categoriesList" routerLinkActive="active" [routerLink]="['/products', category]"
+        class="verical-nav-item list-group-item list-group-item-action">
         {{category}}
       </a>
     </div>
@@ -13,7 +13,7 @@
         <app-product-card [productData]="product" [wishlistBtnRequired]="true" 
           [mainBtnLabel]="'Buy Now'"
           (manageProductForWishlist)="manageProductForWishlist($event)" 
-          (mainBtnClickEvent)="mainBtnClickEvent($event)">
+          (mainBtnClickEvent)="mainBtnClickEvent($event)" (selectedProductToOverview)="openProductOverview($event)">
         </app-product-card>
       </div>
     </div>

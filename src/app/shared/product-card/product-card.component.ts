@@ -14,6 +14,7 @@ export class ProductCardComponent implements OnInit {
   @Output() removeProductFromWishlist: EventEmitter<any> = new EventEmitter();
   @Output() addToCartEvent: EventEmitter<any> = new EventEmitter();
   @Output() mainBtnClickEvent: EventEmitter<any> = new EventEmitter();
+  @Output() selectedProductToOverview: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -26,7 +27,6 @@ export class ProductCardComponent implements OnInit {
       if (propName === 'productData') {
         if (change.currentValue !== change.previousValue) {
           if (this.productData) {
-            console.log(this.productData);
             this.formatProductData();
           }
 
@@ -48,7 +48,7 @@ export class ProductCardComponent implements OnInit {
       case 'usd':
         return price * 78.28;
       
-      case 'Yuan':
+      case 'yuan':
         return price * 11.71;
       
       default:
@@ -64,6 +64,10 @@ export class ProductCardComponent implements OnInit {
   mainBtnClicked(productData: any) {
     const btnObj = {'label': this.mainBtnLabel, 'selectedData': productData}
     this.mainBtnClickEvent.emit(btnObj);
+  }
+
+  getSelectedData(productData: any) {
+    this.selectedProductToOverview.emit(productData);
   }
 
 }

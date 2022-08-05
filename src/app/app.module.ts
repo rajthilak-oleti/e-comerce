@@ -8,12 +8,14 @@ import { HeaderComponent } from './core/header/header.component';
 import { LoginComponent } from './core/login/login.component';
 import { ShoppingModule } from './shopping/shopping.module';
 import { SharedModule } from './shared/shared.module';
+import { HomeComponent } from './core/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
